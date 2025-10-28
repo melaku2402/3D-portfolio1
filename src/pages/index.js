@@ -1,0 +1,9 @@
+export { default as Home } from "./Home";
+export { default as About } from "./About";
+export { default as Projects } from "./Projects";
+export { default as ViewProcessCard } from "./ViewProcessCard";
+export { default as Experience } from "./Experience";
+export { default as Services } from "./Services";
+export { default as TechStack } from "./TechStack";
+export { default as Contact } from "./Contact";
+export { default as AboutPage } from "./AboutPage";
