@@ -216,9 +216,11 @@ const Services = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-[#915EFF] to-[#7d4dff] mx-auto mb-8"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 
                       [@media(min-width:1025px)_and_(max-width:1235px)]:grid-cols-2 
-                      gap-6 md:gap-8">
+                      gap-6 md:gap-8"
+        >
           {servicesData.services.map((service) => (
             <div
               key={service.id}
@@ -265,11 +267,11 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link 
+                  <Link
                     to={service.route}
                     className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 border-2 border-[#915EFF] text-[#C3BFFB] bg-transparent ${
                       hoveredCard === service.id
-                        ? "bg-[#915EFF] text-white border-[#7d4dff]"
+                        ? "bg-[#7f56f1] text-white border-[#7d4dff]"
                         : ""
                     }`}
                   >
