@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   mode: "jit",
   theme: {
+    
     extend: {
       colors: {
         primary: "#050816",
@@ -19,7 +20,7 @@ module.exports = {
         xs: "450px",
       },
       backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
+        "hero-pattern": "url('/src/assets/bbg13.png')",
       },
       transformStyle: {
         "3d": "preserve-3d",
@@ -31,6 +32,8 @@ module.exports = {
         "y-180": "rotateY(180deg)",
       },
     },
+
+    
   },
   plugins: [],
 };

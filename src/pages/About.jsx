@@ -80,7 +80,7 @@ const About = () => {
                       Who Am I!
                     </h2>
 
-                    <div className="space-y-3 md:space-y-4 text-[#C3BFFB] text-base md:text-[15px] leading-7 md:leading-8 text-justify">
+                    <div className="space-y-3 md:space-y-4 text-[#C3BFFB] text-base md:text-[15px] leading-7 md:leading-8 text-justify ">
                       <p>
                         I'm{" "}
                         <strong className="text-[#915EFF]">

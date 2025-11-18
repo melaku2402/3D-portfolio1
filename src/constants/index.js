@@ -29,33 +29,30 @@ import {
   threejs,
 } from "../assets";
 
+import {
+  SiReact,
+  SiMongodb,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiSupabase,
+  SiExpress,
+  SiSass,
+  SiCss3,
+  SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiRedux,
+  SiHtml5,
+} from "react-icons/si";
+
 export const navLinks = [
   { id: "home", title: "Home" },
   { id: "about", title: "About" },
   { id: "services", title: "Services" },
-  // { id: "tech-stack", title: "Tech Stack" },
   { id: "experience", title: "Experience" },
   { id: "projects", title: "Projects" },
   { id: "contact", title: "Contact" },
 ];
-// const services = [
-//   {
-//     title: "Web Developer",
-//     icon: web,
-//   },
-//   {
-//     title: "React Native Developer",
-//     icon: mobile,
-//   },
-//   {
-//     title: "Backend Developer",
-//     icon: backend,
-//   },
-//   {
-//     title: "Content Creator",
-//     icon: creator,
-//   },
-// ];
 
 const technologies = [
   {
@@ -139,32 +136,6 @@ const experiences = [
       "Mentored junior developers in the Andela learning program.",
     ],
   },
-  // {
-  //   title: "Freelance Web Developer",
-  //   company_name: "Various Ethiopian Clients",
-  //   icon: freelance, // You can use a generic freelance icon
-  //   iconBg: "#D97706",
-  //   date: "2020 - 2021",
-  //   points: [
-  //     "Developed websites and web applications for local Ethiopian businesses and startups.",
-  //     "Created e-commerce platforms for Ethiopian retailers and service providers.",
-  //     "Implemented responsive designs that work well on various devices and internet speeds.",
-  //     "Provided technical support and training to clients on content management systems.",
-  //   ],
-  // },
-  // {
-  //   title: "Frontend Developer",
-  //   company_name: "Telebirr SuperApp",
-  //   icon: telebirr,
-  //   iconBg: "#DC2626",
-  //   date: "July 2023 - October 2023",
-  //   points: [
-  //     "Contributed to the development of Ethiopia's first super app platform.",
-  //     "Built user interfaces for digital payments, bill payments, and service bookings.",
-  //     "Worked on performance optimization for low-end mobile devices.",
-  //     "Implemented Amharic language localization and RTL text support.",
-  //   ],
-  // },
 ];
 
 const testimonials = [
@@ -192,6 +163,22 @@ const testimonials = [
     company: "456 Enterprises",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
+  {
+    testimonial:
+      "After Melaku optimized our website, our traffic increased by 50%. We can't thank them enough!",
+    name: "Abebe Beso",
+    designation: "CTO",
+    company: "456 Enterprises",
+    image: "https://randomuser.me/api/portraits/women/6.jpg",
+  },
+  {
+    testimonial:
+      "After Melaku optimized our website, our traffic increased by 50%. We can't thank them enough!",
+    name: "Abebe Beso",
+    designation: "CTO",
+    company: "456 Enterprises",
+    image: "https://randomuser.me/api/portraits/women/6.jpg",
+  },
 ];
 
 const projects = [
@@ -202,19 +189,23 @@ const projects = [
     tags: [
       {
         name: "react",
-        color: "blue-text-gradient",
+        color: "text-[#61DAFB]",
+        icon: SiReact,
       },
       {
         name: "mongodb",
-        color: "green-text-gradient",
+        color: "text-[#47A248]",
+        icon: SiMongodb,
       },
       {
         name: "tailwind",
-        color: "pink-text-gradient",
+        color: "text-[#06B6D4]",
+        icon: SiTailwindcss,
       },
     ],
     image: carrent,
     source_code_link: "https://github.com/",
+    id: "car-rent",
   },
   {
     name: "Job IT",
@@ -223,19 +214,28 @@ const projects = [
     tags: [
       {
         name: "react",
-        color: "blue-text-gradient",
+        color: "text-[#61DAFB]",
+        icon: SiReact,
       },
       {
-        name: "restapi",
-        color: "green-text-gradient",
+        name: "nodejs",
+        color: "text-[#339933]",
+        icon: SiNodedotjs,
       },
       {
-        name: "scss",
-        color: "pink-text-gradient",
+        name: "express",
+        color: "text-[#F7DF1E]",
+        icon: SiExpress,
+      },
+      {
+        name: "mongodb",
+        color: "text-[#47A248]",
+        icon: SiMongodb,
       },
     ],
     image: jobit,
     source_code_link: "https://github.com/",
+    id: "job-it",
   },
   {
     name: "Trip Guide",
@@ -244,19 +244,121 @@ const projects = [
     tags: [
       {
         name: "nextjs",
-        color: "blue-text-gradient",
+        color: "text-white",
+        icon: SiNextdotjs,
+      },
+      {
+        name: "typescript",
+        color: "text-[#3178C6]",
+        icon: SiTypescript,
+      },
+      {
+        name: "tailwind",
+        color: "text-[#06B6D4]",
+        icon: SiTailwindcss,
       },
       {
         name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
+        color: "text-[#3ECF8E]",
+        icon: SiSupabase,
       },
     ],
     image: tripguide,
     source_code_link: "https://github.com/",
+    id: "trip-guide",
+  },
+  {
+    name: "E-Commerce Platform",
+    description:
+      "Full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
+    tags: [
+      {
+        name: "react",
+        color: "text-[#61DAFB]",
+        icon: SiReact,
+      },
+      {
+        name: "nodejs",
+        color: "text-[#339933]",
+        icon: SiNodedotjs,
+      },
+      {
+        name: "mongodb",
+        color: "text-[#47A248]",
+        icon: SiMongodb,
+      },
+      {
+        name: "redux",
+        color: "text-[#764ABC]",
+        icon: SiRedux,
+      },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    source_code_link: "https://github.com/",
+    id: "ecommerce-platform",
+  },
+  {
+    name: "Social Media Dashboard",
+    description:
+      "Analytics dashboard for social media management with data visualization and performance insights.",
+    tags: [
+      {
+        name: "react",
+        color: "text-[#61DAFB]",
+        icon: SiReact,
+      },
+      {
+        name: "typescript",
+        color: "text-[#3178C6]",
+        icon: SiTypescript,
+      },
+      {
+        name: "tailwind",
+        color: "text-[#06B6D4]",
+        icon: SiTailwindcss,
+      },
+      {
+        name: "nodejs",
+        color: "text-[#339933]",
+        icon: SiNodedotjs,
+      },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    source_code_link: "https://github.com/",
+    id: "social-media-dashboard",
+  },
+  {
+    name: "Task Management App",
+    description:
+      "Collaborative task management application with real-time updates and team collaboration features.",
+    tags: [
+      {
+        name: "nextjs",
+        color: "text-white",
+        icon: SiNextdotjs,
+      },
+      {
+        name: "javascript",
+        color: "text-[#F7DF1E]",
+        icon: SiJavascript,
+      },
+      {
+        name: "mongodb",
+        color: "text-[#47A248]",
+        icon: SiMongodb,
+      },
+      {
+        name: "css",
+        color: "text-[#1572B6]",
+        icon: SiCss3,
+      },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    source_code_link: "https://github.com/",
+    id: "task-management-app",
   },
 ];
 
