@@ -57,9 +57,9 @@ const Services = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
-    <section className="w-full py-6 md:py-20 mx-auto relative overflow-hidden bg-[#050816]">
+    <section className="w-full md:py-10 mx-auto relative overflow-hidden bg-[#050816]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-[#C3BFFB] mb-6">
             {servicesData.title}
           </h1>

@@ -1,6 +1,316 @@
 
-//ONLY REACT CODE
-import React, { useState } from "react";
+// //ONLY REACT CODE
+// import React, { useState, useEffect, useRef } from "react";
+// import { SectionWrapper } from "../hoc";
+// import { styles } from "../styles";
+// import { github } from "../assets";
+// import { projects } from "../constants";
+// import { Link } from "react-router-dom";
+
+// const ProjectCard = ({
+//   name,
+//   description,
+//   tags,
+//   image,
+//   source_code_link,
+//   project_id,
+// }) => {
+//   const [isHovered, setIsHovered] = useState(false);
+//   const [isVisible, setIsVisible] = useState(false);
+//   const cardRef = useRef(null);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true);
+//         }
+//       },
+//       {
+//         threshold: 0.1,
+//         rootMargin: "-50px 0px -50px 0px",
+//       }
+//     );
+
+//     if (cardRef.current) {
+//       observer.observe(cardRef.current);
+//     }
+
+//     return () => {
+//       if (cardRef.current) {
+//         observer.unobserve(cardRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <div
+//       ref={cardRef}
+//       style={{
+//         opacity: isVisible ? 1 : 0,
+//         transform: isVisible ? "scale(1)" : "scale(0.9)",
+//         transition: "all 0.5s ease-out",
+//       }}
+//       className="w-full h-full flex-shrink-0 mx-auto"
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div
+//         className={`relative bg-[#151722] border border-gray-800 
+//         rounded-2xl p-2 md:p-3 text-center 
+//         transition-all duration-300 shadow-lg ${
+//           isHovered
+//             ? "transform scale-105 shadow-2xl border-[#915EFF]"
+//             : "transform scale-100 shadow-lg border-transparent"
+//         }`}
+//       >
+//         {/* Image Section */}
+//         <div className="relative h-48 overflow-hidden">
+//           <img
+//             src={image}
+//             alt={name}
+//             className={`w-full h-full object-cover transition-transform duration-700 rounded-2xl ${
+//               isHovered ? "scale-110" : "scale-100"
+//             }`}
+//           />
+          
+//           {/* GitHub Icon */}
+//           <div className="absolute top-4 right-4 w-10 h-10 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 border border-gray-700 shadow-lg">
+//             <img
+//               src={github}
+//               alt="source code"
+//               className="w-3/4 h-3/4 object-contain"
+//               onClick={() => window.open(source_code_link, "_blank")}
+//             />
+//           </div>
+
+//           {/* Title Overlay */}
+//           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+//             <h3 className="text-xl font-bold text-white text-left">
+//               {name}
+//             </h3>
+//           </div>
+//         </div>
+
+//         {/* Content Section */}
+//         <div className="p-6">
+//           <p className="text-[#C3BFFB] text-sm leading-relaxed mb-6 line-clamp-3 text-left">
+//             {description}
+//           </p>
+
+//           {/* Tags with Icons */}
+//           <div className="flex flex-wrap gap-2 mb-6 justify-start">
+//             {tags.map((tag) => {
+//               const IconComponent = tag.icon;
+//               return (
+//                 <div
+//                   key={`${name}-${tag.name}`}
+//                   className={`px-3 py-2 rounded-full bg-black/30 backdrop-blur-sm ${tag.color} border border-gray-700 flex items-center gap-2 transition-all duration-300 hover:scale-105`}
+//                 >
+//                   <IconComponent className="w-4 h-4" />
+//                 </div>
+//               );
+//             })}
+//           </div>
+
+//           {/* View Details Button */}
+//           <Link to={`/project/${project_id}`} className="block w-full">
+//             <button
+//               className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 border-2 border-[#915EFF] text-[#C3BFFB] bg-transparent hover:bg-[#7f56f1] hover:text-white hover:border-[#7d4dff]`}
+//             >
+//               View Details
+//               <svg
+//                 className={`w-4 h-4 transition-transform duration-300 ${
+//                   isHovered ? "translate-x-1" : ""
+//                 }`}
+//                 fill="none"
+//                 stroke="currentColor"
+//                 viewBox="0 0 24 24"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   strokeWidth={2}
+//                   d="M14 5l7 7m0 0l-7 7m7-7H3"
+//                 />
+//               </svg>
+//             </button>
+//           </Link>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// const Projects = () => {
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [isPaused, setIsPaused] = useState(false);
+//   const headerRef = useRef(null);
+//   const carouselRef = useRef(null);
+
+//   // Duplicate projects for seamless loop
+//   const duplicatedProjects = [...projects, ...projects];
+
+//   // Auto carousel effect - continuous loop
+//   useEffect(() => {
+//     if (isPaused) return;
+
+//     const interval = setInterval(() => {
+//       if (carouselRef.current) {
+//         const carousel = carouselRef.current;
+//         const scrollWidth = carousel.scrollWidth / 2;
+//         const currentScroll = carousel.scrollLeft;
+
+//         // Calculate card width based on screen size
+//         let cardWidth;
+//         if (window.innerWidth < 640) {
+//           cardWidth = 320 + 16; // card width + gap for mobile
+//         } else if (window.innerWidth < 768) {
+//           cardWidth = 350 + 20; // card width + gap for tablet
+//         } else if (window.innerWidth < 1024) {
+//           cardWidth = 380 + 24; // card width + gap for small desktop
+//         } else {
+//           cardWidth = 400 + 32; // card width + gap for large desktop
+//         }
+
+//         let newScroll = currentScroll + cardWidth;
+
+//         // Reset to start when reaching the end of original content
+//         if (newScroll >= scrollWidth) {
+//           newScroll = newScroll - scrollWidth;
+//         }
+
+//         carousel.scrollTo({
+//           left: newScroll,
+//           behavior: "smooth",
+//         });
+//       }
+//     }, 3000);
+
+//     return () => clearInterval(interval);
+//   }, [isPaused]);
+
+//   // Reset to start when reaching the end (for manual scroll)
+//   useEffect(() => {
+//     const carousel = carouselRef.current;
+//     if (!carousel) return;
+
+//     const handleScroll = () => {
+//       const scrollWidth = carousel.scrollWidth / 2;
+//       if (carousel.scrollLeft >= scrollWidth) {
+//         carousel.scrollTo({
+//           left: carousel.scrollLeft - scrollWidth,
+//           behavior: "auto",
+//         });
+//       }
+//     };
+
+//     carousel.addEventListener("scroll", handleScroll);
+//     return () => carousel.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true);
+//         }
+//       },
+//       {
+//         threshold: 0.1,
+//         rootMargin: "-50px 0px -50px 0px",
+//       }
+//     );
+
+//     if (headerRef.current) {
+//       observer.observe(headerRef.current);
+//     }
+
+//     return () => {
+//       if (headerRef.current) {
+//         observer.unobserve(headerRef.current);
+//       }
+//     };
+//   }, []);
+
+//   return (
+//     <section className="w-full py-2 md:py-12 mx-auto relative overflow-hidden bg-[#050816] min-h-screen">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+//         {/* Header */}
+//         <div
+//           ref={headerRef}
+//           style={{
+//             opacity: isVisible ? 1 : 0,
+//             transform: isVisible ? "translateY(0)" : "translateY(30px)",
+//             transition: "all 0.8s ease-out",
+//           }}
+//           className="text-center mb-8"
+//         >
+//           <p className="text-sm uppercase tracking-wider text-gray-400 mb-2">
+//             My work / New
+//           </p>
+//           <h2 className="text-4xl md:text-5xl font-bold text-[#C3BFFB] mb-6">
+//             Projects.
+//           </h2>
+//         </div>
+
+//         {/* Carousel Container */}
+//         <div
+//           className="relative"
+//           onMouseEnter={() => setIsPaused(true)}
+//           onMouseLeave={() => setIsPaused(false)}
+//           onTouchStart={() => setIsPaused(true)}
+//           onTouchEnd={() => setTimeout(() => setIsPaused(false), 1000)}
+//         >
+//           {/* Carousel Track */}
+//           <div
+//             ref={carouselRef}
+//             className="overflow-x-auto scrollbar-hide scroll-smooth"
+//             style={{
+//               scrollbarWidth: "none",
+//               msOverflowStyle: "none",
+//             }}
+//           >
+//             <div className="flex gap-6 md:gap-8 py-2 sm:py-4 min-w-max">
+//               {duplicatedProjects.map((project, index) => (
+//                 <div
+//                   key={`${project.id}-${index}`}
+//                   className="w-[320px] sm:w-[350px] md:w-[380px]"
+//                 >
+//                   <ProjectCard
+//                     {...project}
+//                     project_id={project.id || `project-${index}`}
+//                   />
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Light gradient overlays */}
+//           <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#050816]/80 to-transparent pointer-events-none" />
+//           <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#050816]/80 to-transparent pointer-events-none" />
+
+//           {/* Pause indicator */}
+//           {isPaused && (
+//             <div className="absolute top-4 right-4 bg-[#915EFF] text-white text-xs px-2 py-1 rounded">
+//               Paused
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Project Counter */}
+//         {/* <div className="text-center mt-12">
+//           <span className="text-[#C3BFFB] text-sm">
+//             {projects.length} Amazing Projects
+//           </span>
+//         </div> */}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default SectionWrapper(Projects, "projects");
+import React, { useState, useEffect, useRef } from "react";
 import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { github } from "../assets";
@@ -8,7 +318,6 @@ import { projects } from "../constants";
 import { Link } from "react-router-dom";
 
 const ProjectCard = ({
-  index,
   name,
   description,
   tags,
@@ -17,84 +326,111 @@ const ProjectCard = ({
   project_id,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "-50px 0px -50px 0px",
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div
-      className="w-full h-full"
+      ref={cardRef}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "scale(1)" : "scale(0.9)",
+        transition: "all 0.5s ease-out",
+      }}
+      className="w-full h-full flex-shrink-0 mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`
-        bg-[#151722] border border-gray-800 rounded-2xl p-2 md:p-3 w-full h-full 
-        transition-all duration-300 shadow-lg flex flex-col
-        ${
+        className={`relative bg-[#151722] border border-gray-800 
+        rounded-xl p-2 text-center 
+        transition-all duration-300 shadow-lg ${
           isHovered
-            ? "scale-105 border-[#915EFF] shadow-2xl"
-            : "border-transparent"
-        }
-      `}
+            ? "transform scale-105 shadow-2xl border-[#915EFF]"
+            : "transform scale-100 shadow-lg border-transparent"
+        }`}
       >
         {/* Image Section */}
-        <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-xl">
+        <div className="relative h-40 overflow-hidden">
           <img
             src={image}
-            alt={`${name} project`}
-            className={`w-full h-full object-cover transition-transform duration-700 ${
+            alt={name}
+            className={`w-full h-full object-cover transition-transform duration-700 rounded-xl ${
               isHovered ? "scale-110" : "scale-100"
             }`}
           />
 
           {/* GitHub Icon */}
-          <div className="absolute inset-0 flex justify-end m-3">
-            <div
+          <div className="absolute top-3 right-3 w-8 h-8 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 border border-gray-700 shadow-lg">
+            <img
+              src={github}
+              alt="source code"
+              className="w-3/4 h-3/4 object-contain"
               onClick={() => window.open(source_code_link, "_blank")}
-              className="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] w-8 h-8 sm:w-10 sm:h-10 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 hover:scale-110 border border-gray-700 shadow-lg"
-            >
-              <img
-                src={github}
-                alt="source code"
-                className="w-4/5 h-4/5 object-contain"
-              />
-            </div>
+            />
           </div>
 
           {/* Title Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-            <h3 className="text-white font-bold text-lg sm:text-xl md:text-2xl">
-              {name}
-            </h3>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+            <h3 className="text-lg font-bold text-white text-left">{name}</h3>
           </div>
         </div>
 
         {/* Content Section */}
-        <div className="p-4 sm:p-6 flex-1 flex flex-col">
-          <p className="text-[#C3BFFB] text-sm sm:text-base leading-relaxed mb-4 line-clamp-3 flex-1">
+        <div className="p-4">
+          <p className="text-[#C3BFFB] text-sm leading-relaxed mb-4 line-clamp-3 text-left">
             {description}
           </p>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map((tag) => (
-              <span
-                key={`${name}-${tag.name}`}
-                className={`text-xs sm:text-sm px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm ${tag.color} border border-gray-700`}
-              >
-                #{tag.name}
-              </span>
-            ))}
+          {/* Tags with Icons */}
+          <div className="flex flex-wrap gap-1 mb-4 justify-start">
+            {tags.map((tag) => {
+              const IconComponent = tag.icon;
+              return (
+                <div
+                  key={`${name}-${tag.name}`}
+                  className={`px-2 py-1 rounded-full bg-black/30 backdrop-blur-sm ${tag.color} border border-gray-700 flex items-center gap-1 transition-all duration-300 hover:scale-105`}
+                >
+                  <IconComponent className="w-3 h-3" />
+                </div>
+              );
+            })}
           </div>
 
           {/* View Details Button */}
-          <Link to={`/project/${project_id}`} className="block w-full mt-auto">
+          <Link to={`/project/${project_id}`} className="block w-full">
             <button
-              className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2  text-[#C3BFFB] bg-transparent 
-                hover:text-white hover:border-2-[#915EFF]
-              }`}
+              className={`w-full py-2 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 border-2 border-[#915EFF] text-[#C3BFFB] bg-transparent hover:bg-[#7f56f1] hover:text-white hover:border-[#7d4dff] text-sm`}
             >
-              <span>View Details</span>
+              View Details
               <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                className={`w-3 h-3 transition-transform duration-300 ${
+                  isHovered ? "translate-x-1" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -115,211 +451,163 @@ const ProjectCard = ({
 };
 
 const Projects = () => {
-  const fallbackProjects = [
-    {
-      name: "E-Commerce Platform",
-      description:
-        "A full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management built with modern web technologies.",
-      tags: [
-        { name: "react", color: "text-blue-400" },
-        { name: "nodejs", color: "text-green-400" },
-        { name: "mongodb", color: "text-green-300" },
-        { name: "stripe", color: "text-purple-400" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "ecommerce-platform",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe", "JWT"],
-      features: [
-        "User Authentication & Authorization",
-        "Payment Integration with Stripe",
-        "Admin Dashboard",
-        "Real-time Inventory Management",
-        "Order Tracking System",
-        "Responsive Design",
-      ],
-      longDescription:
-        "This e-commerce platform provides a complete shopping experience with secure payments, user accounts, and comprehensive admin capabilities. Built with scalability in mind using modern architecture patterns.",
-    },
-    {
-      name: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates, team collaboration features, and advanced project tracking capabilities.",
-      tags: [
-        { name: "vue", color: "text-green-400" },
-        { name: "firebase", color: "text-yellow-400" },
-        { name: "pwa", color: "text-blue-300" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "task-management-app",
-      technologies: ["Vue.js", "Firebase", "PWA", "Vuex", "SCSS"],
-      features: [
-        "Real-time Collaboration",
-        "Drag & Drop Interface",
-        "Team Management",
-        "Progress Tracking",
-        "Offline Capability",
-        "Push Notifications",
-      ],
-      longDescription:
-        "A modern task management solution that enables teams to collaborate effectively with real-time updates and intuitive user interface. Built as a Progressive Web App for cross-platform compatibility.",
-    },
-    {
-      name: "Social Media Dashboard",
-      description:
-        "Analytics dashboard for social media management with data visualization, scheduling capabilities, and performance insights across multiple platforms.",
-      tags: [
-        { name: "angular", color: "text-red-400" },
-        { name: "python", color: "text-blue-500" },
-        { name: "postgresql", color: "text-blue-400" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "social-media-dashboard",
-      technologies: ["Angular", "Python", "PostgreSQL", "Django", "Chart.js"],
-      features: [
-        "Multi-platform Analytics",
-        "Content Scheduling",
-        "Performance Metrics",
-        "Custom Reports",
-        "Team Collaboration",
-        "API Integrations",
-      ],
-      longDescription:
-        "Comprehensive social media management dashboard that aggregates data from multiple platforms and provides actionable insights through beautiful data visualizations and automated reporting.",
-    },
-    {
-      name: "Fitness Tracking App",
-      description:
-        "Mobile fitness application with workout planning, progress tracking, and social features to help users achieve their fitness goals.",
-      tags: [
-        { name: "react native", color: "text-blue-400" },
-        { name: "graphql", color: "text-pink-400" },
-        { name: "aws", color: "text-orange-400" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "fitness-tracking-app",
-      technologies: ["React Native", "GraphQL", "AWS", "Apollo", "Node.js"],
-      features: [
-        "Workout Planning",
-        "Progress Tracking",
-        "Social Features",
-        "Video Demonstrations",
-        "Nutrition Tracking",
-        "Wearable Integration",
-      ],
-      longDescription:
-        "A comprehensive fitness platform that combines workout planning with social features to create an engaging experience for users pursuing their fitness journey across multiple devices.",
-    },
-    {
-      name: "Real Estate Platform",
-      description:
-        "Modern real estate marketplace with property listings, virtual tours, agent connections, and mortgage calculator tools.",
-      tags: [
-        { name: "nextjs", color: "text-white" },
-        { name: "typescript", color: "text-blue-600" },
-        { name: "prisma", color: "text-blue-300" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "real-estate-platform",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "Tailwind",
-      ],
-      features: [
-        "Property Listings",
-        "Virtual Tours",
-        "Agent Matching",
-        "Mortgage Calculator",
-        "Favorite Properties",
-        "Advanced Search",
-      ],
-      longDescription:
-        "A full-featured real estate platform that connects buyers with properties and agents through an intuitive interface with advanced search capabilities and virtual viewing experiences.",
-    },
-    {
-      name: "Learning Management System",
-      description:
-        "Educational platform with course creation, student management, progress tracking, and interactive learning features for online education.",
-      tags: [
-        { name: "laravel", color: "text-red-500" },
-        { name: "vue", color: "text-green-400" },
-        { name: "mysql", color: "text-blue-400" },
-      ],
-      image:
-        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      source_code_link: "https://github.com",
-      id: "learning-management-system",
-      technologies: ["Laravel", "Vue.js", "MySQL", "Redis", "WebRTC"],
-      features: [
-        "Course Creation",
-        "Student Management",
-        "Progress Tracking",
-        "Video Streaming",
-        "Quizzes & Assessments",
-        "Certificate Generation",
-      ],
-      longDescription:
-        "Comprehensive learning management system that empowers educators to create engaging online courses while providing students with interactive learning experiences and progress tracking tools.",
-    },
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const headerRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  const projectsData =
-    projects && projects.length > 0 ? projects : fallbackProjects;
+  // Duplicate projects for seamless loop
+  const duplicatedProjects = [...projects, ...projects];
+
+  // Auto carousel effect - continuous loop
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const carousel = carouselRef.current;
+        const scrollWidth = carousel.scrollWidth / 2;
+        const currentScroll = carousel.scrollLeft;
+
+        // Calculate card width based on screen size
+        let cardWidth;
+        if (window.innerWidth < 640) {
+          cardWidth = 280 + 12; // Reduced gap for mobile
+        } else if (window.innerWidth < 768) {
+          cardWidth = 300 + 16; // Reduced gap for tablet
+        } else if (window.innerWidth < 1024) {
+          cardWidth = 320 + 20; // Reduced gap for small desktop
+        } else {
+          cardWidth = 340 + 24; // Reduced gap for large desktop
+        }
+
+        let newScroll = currentScroll + cardWidth;
+
+        // Reset to start when reaching the end of original content
+        if (newScroll >= scrollWidth) {
+          newScroll = newScroll - scrollWidth;
+        }
+
+        carousel.scrollTo({
+          left: newScroll,
+          behavior: "smooth",
+        });
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Reset to start when reaching the end (for manual scroll)
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      const scrollWidth = carousel.scrollWidth / 2;
+      if (carousel.scrollLeft >= scrollWidth) {
+        carousel.scrollTo({
+          left: carousel.scrollLeft - scrollWidth,
+          behavior: "auto",
+        });
+      }
+    };
+
+    carousel.addEventListener("scroll", handleScroll);
+    return () => carousel.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "-50px 0px -50px 0px",
+      }
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <section className="w-full py-6 md:py-20 mx-auto relative overflow-hidden bg-[#050816] min-h-screen">
+    <section className="w-full py-2 md:py-8 mx-auto relative overflow-hidden bg-[#050816] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm uppercase tracking-wider text-gray-400 mb-2">
+        <div
+          ref={headerRef}
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.8s ease-out",
+          }}
+          className="text-center mb-6"
+        >
+          <p className="text-sm uppercase tracking-wider text-gray-400 mb-1">
             My work / New
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#C3BFFB] mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#C3BFFB] mb-4">
             Projects.
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#915EFF] to-[#7d4dff] mx-auto mb-8"></div>
         </div>
 
-        {/* Description */}
-        {/* <p className="mt-3 text-[#C3BFFB] text-lg text-center max-w-3xl mx-auto leading-relaxed mb-12">
-          Following projects showcases my skills and experience through
-          real-world examples of my work. Click "View Details" to explore each
-          project in depth.
-        </p> */}
-
-        {/* Projects Grid */}
+        {/* Carousel Container */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 
-                [@media(min-width:1025px)_and_(max-width:1235px)]:grid-cols-2 
-                gap-6 md:gap-8"
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setTimeout(() => setIsPaused(false), 1000)}
         >
-          {projectsData.map((project, index) => (
-            <ProjectCard
-              key={`project-${index}`}
-              index={index}
-              {...project}
-              project_id={project.id || `project-${index}`}
-            />
-          ))}
-        </div>
+          {/* Carousel Track */}
+          <div
+            ref={carouselRef}
+            className="overflow-x-auto scrollbar-hide scroll-smooth"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            <div className="flex gap-4 md:gap-6 py-2 min-w-max">
+              {duplicatedProjects.map((project, index) => (
+                <div
+                  key={`${project.id}-${index}`}
+                  className="w-[280px] sm:w-[300px] md:w-[320px]"
+                >
+                  <ProjectCard
+                    {...project}
+                    project_id={project.id || `project-${index}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
-       
+          {/* Light gradient overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#050816]/80 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#050816]/80 to-transparent pointer-events-none" />
+
+          {/* Pause indicator */}
+          {isPaused && (
+            <div className="absolute top-2 right-2 bg-[#915EFF] text-white text-xs px-2 py-1 rounded">
+              Paused
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
 };
 
 export default SectionWrapper(Projects, "projects");
-

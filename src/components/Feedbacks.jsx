@@ -306,7 +306,7 @@ const Feedbacks = () => {
   }, []);
 
   return (
-    <div className="mt-[-20px] bg-black-100 rounded-[20px] overflow-hidden">
+    <div className="my-20 bg-black-100 rounded-[20px] overflow-hidden">
       <div
         className={`rounded-2xl ${styles.padding} min-h-[250px] sm:min-h-[300px]`}
       >

@@ -17,7 +17,7 @@ import ProjectDetail from "./pages/ProjectDetail";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/Footer";
 import Feedbacks from './components/Feedbacks'
-import Education from "./components/Education";
+import Education from "./pages/Education";
 import ExplorePage from "./pages/ExplorePage;";
 const App = () => {
   return (

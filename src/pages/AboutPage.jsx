@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { pr } from "../assets";
 import TechStack from "./TechStack";
-import Education from "../components/Education";
+import Education from "../pages/Education";
 
 const AboutPage = () => {
   const [hoveredCard, setHoveredCard] = useState(false);

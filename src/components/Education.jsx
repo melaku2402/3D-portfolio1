@@ -19,70 +19,70 @@ const Education = () => {
       ],
       status: "Current Student",
     },
-    {
-      id: 2,
-      degree: "Full Stack Development Bootcamp",
-      institution: "Evangadi Bootcamp",
-      period: "2023",
-      description:
-        "Intensive full-stack development program focusing on modern web technologies. Completed comprehensive training in both frontend and backend development with hands-on project experience.",
-      technologies: [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "JavaScript",
-        "HTML/CSS",
-      ],
-      achievements: [
-        "Built multiple full-stack applications",
-        "Collaborated on team projects",
-        "Completed capstone project",
-      ],
-    },
-    {
-      id: 3,
-      degree: "UX/UI Design Certification",
-      institution: "Self-Taught & Online Platforms",
-      period: "2023 - Present",
-      description:
-        "Self-directed learning in user experience and user interface design principles. Completed courses and practical projects to understand user-centered design, wireframing, prototyping, and design systems.",
-      skills: [
-        "User Research",
-        "Wireframing",
-        "Prototyping",
-        "Figma",
-        "Adobe XD",
-        "Design Thinking",
-      ],
-      platforms: [
-        "Coursera",
-        "Udemy",
-        "YouTube Tutorials",
-        "Design Community Resources",
-      ],
-    },
-    {
-      id: 4,
-      degree: "Frontend Development Specialization",
-      institution: "Online Learning Platforms",
-      period: "2022 - Present",
-      description:
-        "Advanced frontend development skills through continuous learning and practice. Focused on modern JavaScript frameworks, responsive design, and performance optimization.",
-      technologies: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Redux",
-        "GraphQL",
-      ],
-      projects: [
-        "Portfolio Website",
-        "E-commerce Dashboard",
-        "Real-time Chat Application",
-      ],
-    },
+    // {
+    //   id: 2,
+    //   degree: "Full Stack Development Bootcamp",
+    //   institution: "Evangadi Bootcamp",
+    //   period: "2023",
+    //   description:
+    //     "Intensive full-stack development program focusing on modern web technologies. Completed comprehensive training in both frontend and backend development with hands-on project experience.",
+    //   technologies: [
+    //     "React",
+    //     "Node.js",
+    //     "Express",
+    //     "MongoDB",
+    //     "JavaScript",
+    //     "HTML/CSS",
+    //   ],
+    //   achievements: [
+    //     "Built multiple full-stack applications",
+    //     "Collaborated on team projects",
+    //     "Completed capstone project",
+    //   ],
+    // },
+    // {
+    //   id: 3,
+    //   degree: "UX/UI Design Certification",
+    //   institution: "Self-Taught & Online Platforms",
+    //   period: "2023 - Present",
+    //   description:
+    //     "Self-directed learning in user experience and user interface design principles. Completed courses and practical projects to understand user-centered design, wireframing, prototyping, and design systems.",
+    //   skills: [
+    //     "User Research",
+    //     "Wireframing",
+    //     "Prototyping",
+    //     "Figma",
+    //     "Adobe XD",
+    //     "Design Thinking",
+    //   ],
+    //   platforms: [
+    //     "Coursera",
+    //     "Udemy",
+    //     "YouTube Tutorials",
+    //     "Design Community Resources",
+    //   ],
+    // },
+    // {
+    //   id: 4,
+    //   degree: "Frontend Development Specialization",
+    //   institution: "Online Learning Platforms",
+    //   period: "2022 - Present",
+    //   description:
+    //     "Advanced frontend development skills through continuous learning and practice. Focused on modern JavaScript frameworks, responsive design, and performance optimization.",
+    //   technologies: [
+    //     "React",
+    //     "Next.js",
+    //     "TypeScript",
+    //     "Tailwind CSS",
+    //     "Redux",
+    //     "GraphQL",
+    //   ],
+    //   projects: [
+    //     "Portfolio Website",
+    //     "E-commerce Dashboard",
+    //     "Real-time Chat Application",
+    //   ],
+    // },
   ];
 
   const [visibleItems, setVisibleItems] = useState([]);
@@ -115,7 +115,7 @@ const Education = () => {
   const isVisible = (id) => visibleItems.includes(id);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-[#050816]-100">
+    <section ref={sectionRef} className="py-8 bg-[#050816]-100">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div
@@ -127,8 +127,8 @@ const Education = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Education & <span className="text-[#915EFF]">Learning</span>
+          <h2 className="text-4xl md:text-4xl font-bold text-[#C3BFFB] mb-4">
+            Education & Learning
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             My academic journey and continuous learning path in technology
@@ -292,33 +292,6 @@ const Education = () => {
           ))}
         </div>
 
-        {/* Continuous Learning Footer */}
-        <div
-          data-observe
-          data-id="footer"
-          data-delay="800"
-          className={`mt-12 p-6 bg-gradient-to-r from-[#915EFF]/10 to-[#C3BFFB]/10 rounded-2xl border transition-all duration-700 transform ${
-            isVisible("footer")
-              ? "opacity-100 translate-y-0 border-[#915EFF]/20"
-              : "opacity-0 translate-y-10 border-[#915EFF]/10"
-          } hover:border-[#915EFF]/40`}
-        >
-          <div className="flex items-start gap-4">
-            <div className="text-2xl animate-bounce">🚀</div>
-            <div>
-              <h4 className="text-white font-semibold mb-2 text-lg">
-                Continuous Learning Journey
-              </h4>
-              <p className="text-gray-400 leading-7">
-                I believe in lifelong learning and continuously update my skills
-                through online courses, tech communities, and personal projects.
-                Currently exploring advanced topics in AI/ML, cloud computing,
-                and system design to stay at the forefront of technology
-                innovation.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <style jsx>{`
