@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import mk from './mk.png';
-import mk1 from './mk1.png';
+import mk1 from './mk1.jpg';
 import pr from './programmer.jpg';
 import telebirr from './company/telebirr.jpg'
 import safaricom from './company/safaricom.jpg';
@@ -38,7 +38,7 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
 export {
-  logo,
+  
   mk,
   pr,
   mk1,

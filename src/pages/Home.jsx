@@ -297,6 +297,8 @@ const programmingIcons = [
 ];
 
 const Home = () => {
+
+  
   const steps = [
     ' Planning and Analysis',
     "Requirements Gathering",

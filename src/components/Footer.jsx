@@ -93,7 +93,7 @@ const Footer = () => {
               className="flex items-center justify-center gap-3 mb-3 group cursor-pointer"
             >
               <div className="w-10 h-10  rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
-                <span className="text-white font-bold text-lg">
+                <span className="text-white font-bold text-lg bg-white rounded-full">
                   <img src={mk1} className="rounded-full" alt="" />
                 </span>
               </div>
