@@ -1,5 +1,4 @@
 
-
 // import React, { useState, useEffect } from "react";
 // import { Link } from "react-scroll";
 // import { SectionWrapper } from "../hoc";
@@ -28,13 +27,16 @@
 // ];
 
 // const Home = () => {
+
+  
 //   const steps = [
-//     "analysis",
-//     "elicitation",
+//     ' Planning and Analysis',
+//     "Requirements Gathering",
+//     "Design",
 //     "design",
-//     "implementation",
-//     "testing",
-//     "maintenance",
+//     "Implementation",
+//     "Testing and Integration",
+//     "Deployment and Maintenance",
 //   ];
 
 //   const [isMobile, setIsMobile] = useState(false);
@@ -185,24 +187,27 @@
 //             Interfaces and Web Applications
 //           </p>
 
-//           {/* SDLC FIXED ANIMATION */}
-//           <div className="mt-6 mb-12">
+//           {/* FIXED SDLC CONTAINER */}
+//           <div className="mt-6 mb-8">
 //             <div className="flex items-start">
-//               <span className="text-[#C3BFFB] text-lg font-medium mr-2 mt-1">
+//               <span className="text-[#C3BFFB] text-lg font-medium mr-2 mt-1 min-w-[50px]">
 //                 SDLC:
 //               </span>
-//               <div className="text-[#DFD9FF] text-lg font-bold whitespace-pre-line leading-relaxed">
+//               <div
+//                 className="text-[#DFD9FF] text-lg font-bold whitespace-pre-line leading-relaxed min-h-[60px] flex items-start"
+//                 style={{ height: "auto" }}
+//               >
 //                 {displayText}
-//                 <span className="animate-cursor-blink ml-1">|</span>
+//                 {/* <span className="animate-cursor-blink ml-1">|</span> */}
 //               </div>
 //             </div>
 
 //             {/* SUBTEXT */}
 //             <div
-//               className={`mt-4 transition-all duration-700 ${
+//               className={`mt-2 transition-all duration-700 ${
 //                 showSecondText
 //                   ? "opacity-100 translate-y-0"
-//                   : "opacity-0 translate-y-4"
+//                   : "opacity-0 translate-y-2"
 //               }`}
 //             >
 //               <p className="text-[#C3BFFB] text-sm italic">
@@ -211,18 +216,18 @@
 //             </div>
 //           </div>
 
-//           {/* BUTTONS */}
-//           <div className="mt-16 flex gap-4">
+//           {/* FIXED BUTTONS CONTAINER */}
+//           <div className="mt-12 flex gap-4 flex-wrap">
 //             <button
 //               onClick={handleViewWorks}
-//               className="px-8 py-3 rounded-lg bg-[#915EFF] text-white font-bold hover:bg-[#7B4BEB] hover:scale-105 transition-all"
+//               className="px-6 py-3 rounded-lg bg-[#915EFF] text-white font-bold hover:bg-[#7B4BEB] hover:scale-105 transition-all text-sm sm:text-base sm:px-8"
 //             >
 //               View Works
 //             </button>
 
 //             <button
 //               onClick={handleViewResume}
-//               className="px-8 py-3 rounded-lg border-2 border-[#C3BFFB] text-[#C3BFFB] font-bold hover:bg-[#C3BFFB] hover:text-[#915EFF] hover:scale-105 transition-all"
+//               className="px-6 py-3 rounded-lg border-2 border-[#C3BFFB] text-[#C3BFFB] font-bold hover:bg-[#C3BFFB] hover:text-[#915EFF] hover:scale-105 transition-all text-sm sm:text-base sm:px-8"
 //             >
 //               My Resume
 //             </button>
@@ -268,8 +273,7 @@
 //   );
 // };
 
-// export default Home;
-import React, { useState, useEffect } from "react";
+// export default Home;import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
@@ -284,6 +288,7 @@ import {
   SiCss3,
   SiMongodb,
 } from "react-icons/si";
+import { useEffect, useState } from "react";
 
 const programmingIcons = [
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
@@ -297,23 +302,60 @@ const programmingIcons = [
 ];
 
 const Home = () => {
-
-  
-  const steps = [
-    ' Planning and Analysis',
-    "Requirements Gathering",
-    "Design",
-    "design",
-    "Implementation",
-    "Testing and Integration",
-    "Deployment and Maintenance",
+  const processes = [
+    {
+      name: "SDLC",
+      steps: [
+        "Requirements Analysis & Planning",
+        "System Architecture Design",
+        "Agile Development",
+        "Quality Assurance",
+        "Deployment & DevOps",
+        "Maintenance & Support",
+      ]
+    },
+    {
+      name: "AI",
+      steps: [
+        "Data Collection & Preparation",
+        "Model Research & Selection",
+        "Training & Optimization",
+        "Evaluation & Validation",
+        "Deployment & Integration",
+        "Continuous Learning",
+      ]
+    },
+    {
+      name: "MOBILE",
+      steps: [
+        "Platform Strategy & Planning",
+        "Mobile-First Design",
+        "Native Development",
+        "Device Testing",
+        "Store Deployment",
+        "Analytics & Updates",
+      ]
+    },
+    {
+      name: "TECH CONSULTING",
+      steps: [
+        "Strategy & Vision Setting",
+        "Resource Planning",
+        "Agile Execution",
+        "Risk Management",
+        "Stakeholder Communication",
+        "Delivery & Transition",
+      ]
+    }
   ];
 
   const [isMobile, setIsMobile] = useState(false);
   const [displayText, setDisplayText] = useState("");
+  const [processIndex, setProcessIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [showSecondText, setShowSecondText] = useState(false);
+  const [currentProcessName, setCurrentProcessName] = useState("");
 
   // ----------------------------
   // RESPONSIVE CHECK
@@ -326,52 +368,53 @@ const Home = () => {
   }, []);
 
   // ----------------------------
-  // FIXED LETTER-BY-LETTER TYING
+  // INFINITE PROCESS CYCLING
   // ----------------------------
   useEffect(() => {
-    if (stepIndex >= steps.length) {
+    const currentProcess = processes[processIndex];
+    const currentSteps = currentProcess.steps;
+
+    // Set current process name
+    setCurrentProcessName(currentProcess.name);
+
+    if (stepIndex >= currentSteps.length) {
+      // Move to next process
       setTimeout(() => {
-        setDisplayText("");
+        setProcessIndex((prev) => (prev + 1) % processes.length);
         setStepIndex(0);
         setCharIndex(0);
         setShowSecondText(false);
-      }, 2000);
+      }, 1500);
       return;
     }
 
-    const word = steps[stepIndex];
+    const currentStep = currentSteps[stepIndex];
 
-    if (charIndex < word.length) {
+    if (charIndex < currentStep.length) {
       const timeout = setTimeout(() => {
-        const typedWord = word.slice(0, charIndex + 1);
+        const typedStep = currentStep.slice(0, charIndex + 1);
 
-        // Build full text up to current step
-        let text = steps.slice(0, stepIndex).join(" → ");
+        // Build display text with steps only (process name shown separately)
+        let text = currentSteps.slice(0, stepIndex).join(" → ");
         if (stepIndex > 0) text += " → ";
-        text += typedWord;
-
-        // Line-break after "implementation"
-        if (stepIndex >= 4) {
-          const line1 = steps.slice(0, 4).join(" → ");
-          const line2 = text.replace(line1 + " → ", "").trim() || typedWord;
-          text = line1 + "\n" + line2;
-        }
+        text += typedStep;
 
         setDisplayText(text);
         setCharIndex((c) => c + 1);
-      }, 80);
+      }, 50);
 
       return () => clearTimeout(timeout);
     }
 
+    // Move to next step
     const nextStepTimeout = setTimeout(() => {
-      if (stepIndex === 3) setShowSecondText(true);
+      if (stepIndex === 0) setShowSecondText(true);
       setStepIndex((i) => i + 1);
       setCharIndex(0);
-    }, 500);
+    }, 800);
 
     return () => clearTimeout(nextStepTimeout);
-  }, [charIndex, stepIndex]);
+  }, [charIndex, stepIndex, processIndex]);
 
   // ----------------------------
   // HANDLERS
@@ -452,23 +495,30 @@ const Home = () => {
           <h1 className={`${styles.heroHeadText} text-[#C3BFFB]`}>
             Hi, I'm <span className="text-[#915EFF]">Melaku</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-[#C3BFFB]`}>
+          <p className={`${styles.heroSubText} mt-2 text-[#C3BFFB] font-semibold`}>
             Software Engineer, User <br className="sm:block hidden" />
             Interfaces and Web Applications
           </p>
 
-          {/* FIXED SDLC CONTAINER */}
+          {/* DYNAMIC PROCESS CONTAINER */}
           <div className="mt-6 mb-8">
             <div className="flex items-start">
-              <span className="text-[#C3BFFB] text-lg font-medium mr-2 mt-1 min-w-[50px]">
-                SDLC:
-              </span>
-              <div
-                className="text-[#DFD9FF] text-lg font-bold whitespace-pre-line leading-relaxed min-h-[60px] flex items-start"
-                style={{ height: "auto" }}
-              >
-                {displayText}
-                {/* <span className="animate-cursor-blink ml-1">|</span> */}
+              <div className="text-[#915EFF] text-lg font-bold mb-1 px-2">
+                {currentProcessName}
+              </div>
+              <div className="flex flex-col">
+                {/* Dynamic Process Name */}
+                <span className="text-[#C3BFFB] text-lg font-medium font-serif mr-2 mt-1 px-2 min-w-[50px]">
+                  Process:-
+                </span>
+                {/* Process Steps */}
+                <div
+                  className="text-[#C3BFFB] text-lg font-serif whitespace-pre-line leading-relaxed min-h-[60px] flex items-start"
+                  style={{ height: "auto" }}
+                >
+                  {displayText}
+                  <span className="animate-cursor-blink ml-1">|</span>
+                </div>
               </div>
             </div>
 
@@ -481,7 +531,7 @@ const Home = () => {
               }`}
             >
               <p className="text-[#C3BFFB] text-sm italic">
-                Following industry best practices to deliver robust solutions
+                Following industry best practices across multiple domains
               </p>
             </div>
           </div>

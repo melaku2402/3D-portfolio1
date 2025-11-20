@@ -1,5 +1,5 @@
 // import logo from "./logo.svg";
-import mk from './mk.png';
+// import mk from './mk.png';
 import mk1 from './mk1.jpg';
 import pr from './programmer.jpg';
 import telebirr from './company/telebirr.jpg'
@@ -36,10 +36,12 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import sp from './sp.jpg';
+import webImage from './webImage.jpg'
 
 export {
-  
-  mk,
+  webImage,
+  // mk,
   pr,
   mk1,
   telebirr,
@@ -73,4 +75,5 @@ export {
   carrent,
   jobit,
   tripguide,
+  sp
 };

@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
@@ -26,6 +25,10 @@ const Navbar = () => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      // Close mobile menu when resizing to larger screens
+      if (window.innerWidth >= 768) {
+        setToggle(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -76,19 +79,37 @@ const Navbar = () => {
       name: "LinkedIn",
       url: "https://linkedin.com/in/melakuadane",
       icon: <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />,
-    }
-  
+    },
   ];
 
-  // Responsive font sizes based on window width
+  // Enhanced responsive styles with more breakpoints
   const getResponsiveStyles = () => {
-    if (windowSize.width < 640) {
+    // Mobile First Approach
+    if (windowSize.width < 480) {
+      return {
+        logoText: "text-[15px]",
+        navItem: "text-[12px]",
+        backButton: "text-[13px]",
+        mobileItem: "text-[14px]",
+        paddingX: "px-3",
+        logoSize: "w-7 h-7",
+        iconSize: "w-4 h-4",
+        navGap: "gap-1",
+        socialGap: "gap-2",
+        showName: true,
+      };
+    } else if (windowSize.width < 640) {
       return {
         logoText: "text-[16px]",
         navItem: "text-[13px]",
         backButton: "text-[14px]",
         mobileItem: "text-[14px]",
         paddingX: "px-4",
+        logoSize: "w-8 h-8",
+        iconSize: "w-4 h-4",
+        navGap: "gap-2",
+        socialGap: "gap-3",
+        showName: true,
       };
     } else if (windowSize.width < 768) {
       return {
@@ -96,15 +117,94 @@ const Navbar = () => {
         navItem: "text-[14px]",
         backButton: "text-[15px]",
         mobileItem: "text-[15px]",
+        paddingX: "px-5",
+        logoSize: "w-9 h-9",
+        iconSize: "w-4 h-4",
+        navGap: "gap-3",
+        socialGap: "gap-3",
+        showName: true,
+      };
+    } else if (windowSize.width < 868) {
+      // Critical range: 768-868px
+      return {
+        logoText: "text-[17px]",
+        navItem: "text-[13px]",
+        backButton: "text-[15px]",
+        mobileItem: "text-[15px]",
         paddingX: "px-6",
+        logoSize: "w-9 h-9",
+        iconSize: "w-4 h-4",
+        navGap: "gap-1",
+        socialGap: "gap-2",
+        showName: false, // Hide name between 768-868px
+      };
+    } else if (windowSize.width < 968) {
+      // Critical range: 868-968px
+      return {
+        logoText: "text-[18px]",
+        navItem: "text-[13px]",
+        backButton: "text-[16px]",
+        mobileItem: "text-[16px]",
+        paddingX: "px-6",
+        logoSize: "w-9 h-9",
+        iconSize: "w-4 h-4",
+        navGap: "gap-2",
+        socialGap: "gap-3",
+        showName: false, // Hide name between 868-968px
+      };
+    } else if (windowSize.width < 1000) {
+      // Critical range: 968-1000px
+      return {
+        logoText: "text-[18px]",
+        navItem: "text-[14px]",
+        backButton: "text-[16px]",
+        mobileItem: "text-[16px]",
+        paddingX: "px-7",
+        logoSize: "w-10 h-10",
+        iconSize: "w-5 h-5",
+        navGap: "gap-3",
+        socialGap: "gap-3",
+        showName: false, // Hide name between 968-1000px
       };
     } else if (windowSize.width < 1024) {
       return {
         logoText: "text-[18px]",
-        navItem: "text-[15px]",
+        navItem: "text-[14px]",
+        backButton: "text-[16px]",
+        mobileItem: "text-[16px]",
+        paddingX: "px-7",
+        logoSize: "w-10 h-10",
+        iconSize: "w-5 h-5",
+        navGap: "gap-3",
+        socialGap: "gap-3",
+        showName: true, // Show name again from 1000px
+      };
+    } else if (windowSize.width < 1160) {
+      // Critical range: 1024-1160px
+      return {
+        logoText: "text-[19px]",
+        navItem: "text-[14px]",
         backButton: "text-[16px]",
         mobileItem: "text-[16px]",
         paddingX: "px-8",
+        logoSize: "w-10 h-10",
+        iconSize: "w-5 h-5",
+        navGap: "gap-3",
+        socialGap: "gap-3",
+        showName: true,
+      };
+    } else if (windowSize.width < 1280) {
+      return {
+        logoText: "text-[19px]",
+        navItem: "text-[15px]",
+        backButton: "text-[17px]",
+        mobileItem: "text-[17px]",
+        paddingX: "px-9",
+        logoSize: "w-10 h-10",
+        iconSize: "w-5 h-5",
+        navGap: "gap-4",
+        socialGap: "gap-4",
+        showName: true,
       };
     } else {
       return {
@@ -113,6 +213,11 @@ const Navbar = () => {
         backButton: "text-[17px]",
         mobileItem: "text-[17px]",
         paddingX: "px-10",
+        logoSize: "w-10 h-10",
+        iconSize: "w-5 h-5",
+        navGap: "gap-6",
+        socialGap: "gap-4",
+        showName: true,
       };
     }
   };
@@ -125,13 +230,17 @@ const Navbar = () => {
       return (
         <Link
           to="/projects"
-          className="flex items-center gap-3 group transition-all duration-300 hover:scale-105"
+          className="flex items-center gap-2 sm:gap-3 group transition-all duration-300 hover:scale-105"
         >
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#915EFF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#7c4dff] group-hover:shadow-lg group-hover:shadow-[#915EFF]/30">
-            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white transition-transform duration-300 group-hover:-translate-x-1" />
+          <div
+            className={`${responsiveStyles.logoSize} bg-[#915EFF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#7c4dff] group-hover:shadow-lg group-hover:shadow-[#915EFF]/30`}
+          >
+            <ArrowLeft
+              className={`${responsiveStyles.iconSize} text-white transition-transform duration-300 group-hover:-translate-x-1`}
+            />
           </div>
           <span
-            className={`text-white font-semibold transition-all duration-300 group-hover:text-[#915EFF] ${responsiveStyles.backButton}`}
+            className={`text-white font-semibold transition-all duration-300 group-hover:text-[#915EFF] ${responsiveStyles.backButton} hidden xs:block`}
           >
             Back to Projects
           </span>
@@ -149,13 +258,15 @@ const Navbar = () => {
         <img
           src={mk1}
           alt="logo"
-          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-contain transition-all duration-300 group-hover:scale-110 bg-[#fff] group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-[#915EFF]/30"
+          className={`${responsiveStyles.logoSize} rounded-full object-contain transition-all duration-300 group-hover:scale-110 bg-[#fff] group-hover:rotate-3 group-hover:shadow-lg group-hover:shadow-[#915EFF]/30`}
         />
-        <p
-          className={`text-white font-bold cursor-pointer flex transition-all duration-300 group-hover:text-[#C3BFFB] ${responsiveStyles.logoText}`}
-        >
-          Melaku Adane
-        </p>
+        {responsiveStyles.showName && (
+          <p
+            className={`text-white font-bold cursor-pointer flex transition-all duration-300 group-hover:text-[#C3BFFB] ${responsiveStyles.logoText}`}
+          >
+            Melaku Adane
+          </p>
+        )}
       </a>
     );
   };
@@ -164,7 +275,7 @@ const Navbar = () => {
     <nav
       className={`${styles.paddingX} ${
         responsiveStyles.paddingX
-      } w-full flex items-center py-3 sm:py-4 md:py-5 fixed top-0 z-50 ${
+      } w-full flex items-center py-3 fixed top-0 z-50 ${
         scrolled
           ? "bg-primary/95 backdrop-blur-lg shadow-2xl shadow-black/30"
           : "bg-transparent"
@@ -176,9 +287,11 @@ const Navbar = () => {
 
         {/* Desktop Navigation - Hide on project detail pages */}
         {!isProjectDetailPage && (
-          <div className="flex items-center gap-4 lg:gap-6">
-            {/* Navigation Links - Now placed BEFORE social icons */}
-            <ul className="list-none hidden md:flex flex-row gap-2 lg:gap-4 xl:gap-6">
+          <div className="flex items-center gap-3 lg:gap-4">
+            {/* Navigation Links */}
+            <ul
+              className={`list-none hidden md:flex flex-row ${responsiveStyles.navGap}`}
+            >
               {navLinks.map((nav) => (
                 <li key={nav.id} className="relative group">
                   {isHomePage ? (
@@ -189,7 +302,7 @@ const Navbar = () => {
                       offset={-80}
                       duration={800}
                       onSetActive={() => setActive(nav.id)}
-                      className={`flex items-center py-2 px-3 lg:px-4 cursor-pointer transition-all duration-300 ${
+                      className={`flex items-center py-2 px-2 sm:px-3 cursor-pointer transition-all duration-300 ${
                         active === nav.id
                           ? "text-white font-semibold scale-105"
                           : "text-secondary hover:text-white hover:scale-105"
@@ -205,7 +318,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       to={`/#${nav.id}`}
-                      className={`flex items-center py-2 px-3 lg:px-4 cursor-pointer transition-all duration-300 ${
+                      className={`flex items-center py-2 px-2 sm:px-3 cursor-pointer transition-all duration-300 ${
                         active === nav.id
                           ? "text-white font-semibold scale-105"
                           : "text-secondary hover:text-white hover:scale-105"
@@ -224,20 +337,22 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Social Icons - Now placed AFTER navigation links */}
-            <div className="hidden md:flex items-center gap-3 lg:gap-4">
+            {/* Social Icons */}
+            <div
+              className={`hidden md:flex items-center ${responsiveStyles.socialGap}`}
+            >
               {socialLinks.map((social, index) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-secondary hover:text-white transition-all duration-300 hover:scale-110 p-2 rounded-full hover:bg-[#915EFF]/10 group relative"
+                  className="text-secondary hover:text-white transition-all duration-300 hover:scale-110 p-1.5 sm:p-2 rounded-full hover:bg-[#915EFF]/10 group relative"
                   aria-label={social.name}
                 >
                   {social.icon}
                   {/* Tooltip */}
-                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                     {social.name}
                   </span>
                 </a>
@@ -246,18 +361,18 @@ const Navbar = () => {
               {/* Dark/Light Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
-                className="text-secondary hover:text-white transition-all duration-300 hover:scale-110 p-2 rounded-full hover:bg-[#915EFF]/10 group relative"
+                className="text-secondary hover:text-white transition-all duration-300 hover:scale-110 p-1.5 sm:p-2 rounded-full hover:bg-[#915EFF]/10 group relative"
                 aria-label={
                   darkMode ? "Switch to light mode" : "Switch to dark mode"
                 }
               >
                 {darkMode ? (
-                  <Sun className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Sun className={responsiveStyles.iconSize} />
                 ) : (
-                  <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Moon className={responsiveStyles.iconSize} />
                 )}
                 {/* Tooltip */}
-                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                   {darkMode ? "Light Mode" : "Dark Mode"}
                 </span>
               </button>
@@ -282,15 +397,15 @@ const Navbar = () => {
 
               {/* Mobile Menu Dropdown */}
               <div
-                className={`absolute top-10 right-0 w-56 sm:w-64 bg-[#100d25]/95 backdrop-blur-xl border border-[#915EFF]/20 rounded-2xl shadow-2xl shadow-[#915EFF]/10 transition-all duration-500 ${
+                className={`absolute top-10 right-0 w-72 xs:w-80 sm:w-96 bg-[#100d25]/95 backdrop-blur-xl border border-[#915EFF]/20 rounded-2xl shadow-2xl shadow-[#915EFF]/10 transition-all duration-500 ${
                   toggle
                     ? "opacity-100 visible translate-y-0 scale-100"
                     : "opacity-0 invisible -translate-y-4 scale-95"
                 }`}
               >
-                <div className="p-3">
-                  {/* Navigation Links - First in mobile menu */}
-                  <ul className="flex flex-col gap-1 mb-3 pb-3 border-b border-[#915EFF]/20">
+                <div className="p-4">
+                  {/* Navigation Links */}
+                  <ul className="flex flex-col gap-2 mb-4 pb-4 border-b border-[#915EFF]/20">
                     {navLinks.map((nav, index) => (
                       <li
                         key={nav.id}
@@ -333,8 +448,8 @@ const Navbar = () => {
                     ))}
                   </ul>
 
-                  {/* Social Icons - After navigation in mobile menu */}
-                  <div className="flex justify-center gap-4">
+                  {/* Social Icons */}
+                  <div className="flex justify-center items-center gap-4 sm:gap-6">
                     {socialLinks.map((social) => (
                       <a
                         key={social.name}
@@ -361,25 +476,11 @@ const Navbar = () => {
                     </button>
                   </div>
                 </div>
-
-                {/* Mobile menu footer */}
-                {/* <div className="border-t border-[#915EFF]/20 p-3">
-                  <div className="text-center">
-                    <p className="text-[#C3BFFB] text-xs opacity-70">
-                      Portfolio v1.0
-                    </p>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
         )}
       </div>
-
-      {/* Progress bar for scroll */}
-      {/* {scrolled && (
-        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#915EFF] to-[#C3BFFB] opacity-50"></div>
-      )} */}
     </nav>
   );
 };

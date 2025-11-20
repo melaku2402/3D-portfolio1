@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { SectionWrapper } from "../hoc";
 import { Link } from "react-router-dom";
-
+import {sp,webImage} from "../assets";
 const servicesData = {
   title: "How Can I Help You?",
   services: [
     {
       id: 1,
-      title: "Web & Mobile Development",
+      // title: "Web & Mobile Development",
       features: [
         "Responsive Web Applications",
         "Cross-Platform Mobile Apps",
         "Modern Tech Stack",
         "Performance Optimization",
       ],
-      image:
-        "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image:webImage,
       buttonText: "Explore More",
       icon: "💻",
       route: "/explore", // Changed to navigate to explore page
@@ -44,8 +43,7 @@ const servicesData = {
         "Expert Guidance",
         "Deployment & Scaling",
       ],
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image:sp,
       buttonText: "Explore More",
       icon: "📊",
       route: "/explore", // Changed to navigate to explore page
@@ -90,7 +88,7 @@ const Services = () => {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={service.image}
-                    alt={service.title}
+                    // alt={service.title}
                     className={`w-full h-full object-cover transition-transform duration-700 rounded-2xl ${
                       hoveredCard === service.id ? "scale-110" : "scale-100"
                     }`}
